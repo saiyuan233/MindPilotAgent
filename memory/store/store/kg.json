@@ -1,0 +1,924 @@
+{
+  "nodes": {
+    "paper:2002.08301v1": {
+      "node_id": "paper:2002.08301v1",
+      "node_type": "paper",
+      "label": "Multi-wavelet residual dense convolutional neural network for image denoising",
+      "properties": {
+        "year": "2020",
+        "url": "https://arxiv.org/abs/2002.08301v1",
+        "relevance": 0.001,
+        "summary": {
+          "method": "以MWCNN为骨干，在各层插入残差密集块，利用短期残差学习构建MWRDCNN模型进行图像去噪。",
+          "conclusion": "该模型能提取更多特征，保持大感受野并提高计算效率，提升了去噪性能与鲁棒性。",
+          "limitation": "摘要文本中断，未明确提及具体局限性。"
+        }
+      }
+    },
+    "author:Shuo-Fei_Wang": {
+      "node_id": "author:Shuo-Fei_Wang",
+      "node_type": "author",
+      "label": "Shuo-Fei Wang",
+      "properties": {}
+    },
+    "author:Wen-Kai_Yu": {
+      "node_id": "author:Wen-Kai_Yu",
+      "node_type": "author",
+      "label": "Wen-Kai Yu",
+      "properties": {}
+    },
+    "author:Ya-Xin_Li": {
+      "node_id": "author:Ya-Xin_Li",
+      "node_type": "author",
+      "label": "Ya-Xin Li",
+      "properties": {}
+    },
+    "kw:multi-wavelet": {
+      "node_id": "kw:multi-wavelet",
+      "node_type": "keyword",
+      "label": "Multi-wavelet",
+      "properties": {}
+    },
+    "kw:residual": {
+      "node_id": "kw:residual",
+      "node_type": "keyword",
+      "label": "Residual",
+      "properties": {}
+    },
+    "kw:convolutional": {
+      "node_id": "kw:convolutional",
+      "node_type": "keyword",
+      "label": "Convolutional",
+      "properties": {}
+    },
+    "kw:neural": {
+      "node_id": "kw:neural",
+      "node_type": "keyword",
+      "label": "Neural",
+      "properties": {}
+    },
+    "kw:network": {
+      "node_id": "kw:network",
+      "node_type": "keyword",
+      "label": "Network",
+      "properties": {}
+    },
+    "paper:2006.13801v1": {
+      "node_id": "paper:2006.13801v1",
+      "node_type": "paper",
+      "label": "Instant Image Denoising Plugin for ImageJ using Convolutional Neural Networks",
+      "properties": {
+        "year": "2020",
+        "url": "https://arxiv.org/abs/2006.13801v1",
+        "relevance": 0.001,
+        "summary": {
+          "method": "开发基于卷积神经网络的ImageJ插件，实现荧光显微镜图像去噪。",
+          "conclusion": "平均峰值信噪比提升7.5 dB，可在80毫秒内实现即时去噪。",
+          "limitation": "摘要未提及具体局限性。"
+        }
+      }
+    },
+    "author:Varun_Mannam": {
+      "node_id": "author:Varun_Mannam",
+      "node_type": "author",
+      "label": "Varun Mannam",
+      "properties": {}
+    },
+    "author:Yide_Zhang": {
+      "node_id": "author:Yide_Zhang",
+      "node_type": "author",
+      "label": "Yide Zhang",
+      "properties": {}
+    },
+    "author:Yinhao_Zhu": {
+      "node_id": "author:Yinhao_Zhu",
+      "node_type": "author",
+      "label": "Yinhao Zhu",
+      "properties": {}
+    },
+    "kw:instant": {
+      "node_id": "kw:instant",
+      "node_type": "keyword",
+      "label": "Instant",
+      "properties": {}
+    },
+    "kw:denoising": {
+      "node_id": "kw:denoising",
+      "node_type": "keyword",
+      "label": "Denoising",
+      "properties": {}
+    },
+    "kw:plugin": {
+      "node_id": "kw:plugin",
+      "node_type": "keyword",
+      "label": "Plugin",
+      "properties": {}
+    },
+    "kw:imagej": {
+      "node_id": "kw:imagej",
+      "node_type": "keyword",
+      "label": "ImageJ",
+      "properties": {}
+    },
+    "paper:2102.09376v1": {
+      "node_id": "paper:2102.09376v1",
+      "node_type": "paper",
+      "label": "NFCNN: Toward a Noise Fusion Convolutional Neural Network for Image Denoising",
+      "properties": {
+        "year": "2021",
+        "url": "https://arxiv.org/abs/2102.09376v1",
+        "relevance": 0.001,
+        "summary": {
+          "method": "提出NFCNN去噪模型，采用多阶段双分支架构，引入融合模块结合预测图像与残差，实施阶段式监督训练。",
+          "conclusion": "得益于融合模块，模型具备优异的纹理保持能力，实现了先进的图像去噪性能。",
+          "limitation": "摘要未提及具体局限性。"
+        }
+      }
+    },
+    "author:Maoyuan_Xu": {
+      "node_id": "author:Maoyuan_Xu",
+      "node_type": "author",
+      "label": "Maoyuan Xu",
+      "properties": {}
+    },
+    "author:Xiaoping_Xie": {
+      "node_id": "author:Xiaoping_Xie",
+      "node_type": "author",
+      "label": "Xiaoping Xie",
+      "properties": {}
+    },
+    "kw:nfcnn:": {
+      "node_id": "kw:nfcnn:",
+      "node_type": "keyword",
+      "label": "NFCNN:",
+      "properties": {}
+    },
+    "kw:toward": {
+      "node_id": "kw:toward",
+      "node_type": "keyword",
+      "label": "Toward",
+      "properties": {}
+    },
+    "kw:fusion": {
+      "node_id": "kw:fusion",
+      "node_type": "keyword",
+      "label": "Fusion",
+      "properties": {}
+    },
+    "paper:2101.07713v1": {
+      "node_id": "paper:2101.07713v1",
+      "node_type": "paper",
+      "label": "Image Denoising using Attention-Residual Convolutional Neural Networks",
+      "properties": {
+        "year": "2021",
+        "url": "https://arxiv.org/abs/2101.07713v1",
+        "relevance": 0.001,
+        "summary": {
+          "method": "提出注意力残差卷积神经网络（ARCNN）用于非盲去噪，并扩展至盲去噪任务。",
+          "conclusion": "旨在去除噪声并保留细节，相比非学习方法更具灵活性和有效性。",
+          "limitation": "摘要未明确提及具体局限性。"
+        }
+      }
+    },
+    "author:Rafael_G._Pires": {
+      "node_id": "author:Rafael_G._Pires",
+      "node_type": "author",
+      "label": "Rafael G. Pires",
+      "properties": {}
+    },
+    "author:Daniel_F._S._Santos": {
+      "node_id": "author:Daniel_F._S._Santos",
+      "node_type": "author",
+      "label": "Daniel F. S. Santos",
+      "properties": {}
+    },
+    "author:Marcos_C._S._Santana": {
+      "node_id": "author:Marcos_C._S._Santana",
+      "node_type": "author",
+      "label": "Marcos C. S. Santana",
+      "properties": {}
+    },
+    "kw:attention-residual": {
+      "node_id": "kw:attention-residual",
+      "node_type": "keyword",
+      "label": "Attention-Residual",
+      "properties": {}
+    },
+    "kw:networks": {
+      "node_id": "kw:networks",
+      "node_type": "keyword",
+      "label": "Networks",
+      "properties": {}
+    },
+    "paper:2107.04857v2": {
+      "node_id": "paper:2107.04857v2",
+      "node_type": "paper",
+      "label": "Dense-Sparse Deep Convolutional Neural Networks Training for Image Denoising",
+      "properties": {
+        "year": "2021",
+        "url": "https://arxiv.org/abs/2107.04857v2",
+        "relevance": 0.001,
+        "summary": {
+          "method": "提出一种增强的稠密-稀疏-稠密网络训练过程，应用于深度去噪卷积神经网络。",
+          "conclusion": "该方法在深度去噪卷积神经网络中实现了相当的去噪性能水平。",
+          "limitation": "提供的摘要文本未明确提及所提方法的具体局限性。"
+        }
+      }
+    },
+    "author:Basit_O._Alawode": {
+      "node_id": "author:Basit_O._Alawode",
+      "node_type": "author",
+      "label": "Basit O. Alawode",
+      "properties": {}
+    },
+    "author:Mudassir_Masood": {
+      "node_id": "author:Mudassir_Masood",
+      "node_type": "author",
+      "label": "Mudassir Masood",
+      "properties": {}
+    },
+    "kw:dense-sparse": {
+      "node_id": "kw:dense-sparse",
+      "node_type": "keyword",
+      "label": "Dense-Sparse",
+      "properties": {}
+    },
+    "kw:training": {
+      "node_id": "kw:training",
+      "node_type": "keyword",
+      "label": "Training",
+      "properties": {}
+    },
+    "paper:2009.00612v1": {
+      "node_id": "paper:2009.00612v1",
+      "node_type": "paper",
+      "label": "Operational vs Convolutional Neural Networks for Image Denoising",
+      "properties": {
+        "year": "2020",
+        "url": "https://arxiv.org/abs/2009.00612v1",
+        "relevance": 0.001,
+        "summary": {
+          "method": "提出异构网络模型ONN，引入操作神经元实现非线性与多样性配置，并设计基于赫布理论的鲁棒算子搜索策略。",
+          "conclusion": "ONN通过非线性异构配置克服了CNN同质性与线性卷积的局限，提升了图像去噪的效能。",
+          "limitation": "原文摘要未明确提及该方法的具体局限性。"
+        }
+      }
+    },
+    "author:Junaid_Malik": {
+      "node_id": "author:Junaid_Malik",
+      "node_type": "author",
+      "label": "Junaid Malik",
+      "properties": {}
+    },
+    "author:Serkan_Kiranyaz": {
+      "node_id": "author:Serkan_Kiranyaz",
+      "node_type": "author",
+      "label": "Serkan Kiranyaz",
+      "properties": {}
+    },
+    "author:Moncef_Gabbouj": {
+      "node_id": "author:Moncef_Gabbouj",
+      "node_type": "author",
+      "label": "Moncef Gabbouj",
+      "properties": {}
+    },
+    "kw:operational": {
+      "node_id": "kw:operational",
+      "node_type": "keyword",
+      "label": "Operational",
+      "properties": {}
+    },
+    "paper:2309.08197v1": {
+      "node_id": "paper:2309.08197v1",
+      "node_type": "paper",
+      "label": "Hyperspectral Image Denoising via Self-Modulating Convolutional Neural Networks",
+      "properties": {
+        "year": "2023",
+        "url": "https://arxiv.org/abs/2309.08197v1",
+        "relevance": 0.001,
+        "summary": {
+          "method": "提出一种自调制卷积神经网络，用于高光谱图像去噪。",
+          "conclusion": "该方法克服了现有方法适应性不足的问题，提升了真实复杂噪声下的去噪性能。",
+          "limitation": "现有深度方法在真实复杂噪声下表现欠佳，缺乏对新数据的适应性。"
+        }
+      }
+    },
+    "author:Orhan_Torun": {
+      "node_id": "author:Orhan_Torun",
+      "node_type": "author",
+      "label": "Orhan Torun",
+      "properties": {}
+    },
+    "author:Seniha_Esen_Yuksel": {
+      "node_id": "author:Seniha_Esen_Yuksel",
+      "node_type": "author",
+      "label": "Seniha Esen Yuksel",
+      "properties": {}
+    },
+    "author:Erkut_Erdem": {
+      "node_id": "author:Erkut_Erdem",
+      "node_type": "author",
+      "label": "Erkut Erdem",
+      "properties": {}
+    },
+    "kw:hyperspectral": {
+      "node_id": "kw:hyperspectral",
+      "node_type": "keyword",
+      "label": "Hyperspectral",
+      "properties": {}
+    },
+    "kw:self-modulating": {
+      "node_id": "kw:self-modulating",
+      "node_type": "keyword",
+      "label": "Self-Modulating",
+      "properties": {}
+    },
+    "paper:1905.11172v1": {
+      "node_id": "paper:1905.11172v1",
+      "node_type": "paper",
+      "label": "GRDN:Grouped Residual Dense Network for Real Image Denoising and GAN-based Real-world Noise Modeling",
+      "properties": {
+        "year": "2019",
+        "url": "https://arxiv.org/abs/1905.11172v1",
+        "relevance": 0.0,
+        "summary": {
+          "method": "提出分组残差密集网络（GRDN），扩展了RDN架构，利用GRDB作为构建模块。",
+          "conclusion": "实验展示了GRDN在图像去噪方面的性能。",
+          "limitation": "摘要未明确提及方法局限性，仅指出真实去噪缺乏理想配对数据的挑战。"
+        }
+      }
+    },
+    "author:Dong-Wook_Kim": {
+      "node_id": "author:Dong-Wook_Kim",
+      "node_type": "author",
+      "label": "Dong-Wook Kim",
+      "properties": {}
+    },
+    "author:Jae_Ryun_Chung": {
+      "node_id": "author:Jae_Ryun_Chung",
+      "node_type": "author",
+      "label": "Jae Ryun Chung",
+      "properties": {}
+    },
+    "author:Seung-Won_Jung": {
+      "node_id": "author:Seung-Won_Jung",
+      "node_type": "author",
+      "label": "Seung-Won Jung",
+      "properties": {}
+    },
+    "kw:grdn:grouped": {
+      "node_id": "kw:grdn:grouped",
+      "node_type": "keyword",
+      "label": "GRDN:Grouped",
+      "properties": {}
+    },
+    "kw:gan-based": {
+      "node_id": "kw:gan-based",
+      "node_type": "keyword",
+      "label": "GAN-based",
+      "properties": {}
+    },
+    "paper:1704.00524v1": {
+      "node_id": "paper:1704.00524v1",
+      "node_type": "paper",
+      "label": "Block-Matching Convolutional Neural Network for Image Denoising",
+      "properties": {
+        "year": "2017",
+        "url": "https://arxiv.org/abs/1704.00524v1",
+        "relevance": 0.0,
+        "summary": {
+          "method": "提出BMCNN结合NSS与CNN，利用预去噪图像引导块匹配，将相似块整合为3D块并用CNN学习去噪映射。",
+          "conclusion": "结合NSS处理规则模式与CNN处理不规则结构的优势，有效提升了图像去噪性能。",
+          "limitation": "块匹配过程易受噪声干扰，需依赖预去噪算法生成引导信号。"
+        }
+      }
+    },
+    "author:Byeongyong_Ahn": {
+      "node_id": "author:Byeongyong_Ahn",
+      "node_type": "author",
+      "label": "Byeongyong Ahn",
+      "properties": {}
+    },
+    "author:Nam_Ik_Cho": {
+      "node_id": "author:Nam_Ik_Cho",
+      "node_type": "author",
+      "label": "Nam Ik Cho",
+      "properties": {}
+    },
+    "kw:block-matching": {
+      "node_id": "kw:block-matching",
+      "node_type": "keyword",
+      "label": "Block-Matching",
+      "properties": {}
+    },
+    "paper:2204.12736v2": {
+      "node_id": "paper:2204.12736v2",
+      "node_type": "paper",
+      "label": "A Multi-Head Convolutional Neural Network With Multi-path Attention improves Image Denoising",
+      "properties": {
+        "year": "2022",
+        "url": "https://arxiv.org/abs/2204.12736v2",
+        "relevance": 0.0,
+        "summary": {
+          "method": "提出多头卷积神经网络MHCNN，利用多头接收不同旋转角度图像，并结合图像级多路径注意力机制（MPA）有效整合特征以去噪。",
+          "conclusion": "实验表明MHCNN在图像去噪任务中超越了现有方法，有效提升了去噪性能。",
+          "limitation": "摘要未明确提及该方法的局限性。"
+        }
+      }
+    },
+    "author:Jiahong_Zhang": {
+      "node_id": "author:Jiahong_Zhang",
+      "node_type": "author",
+      "label": "Jiahong Zhang",
+      "properties": {}
+    },
+    "author:Meijun_Qu": {
+      "node_id": "author:Meijun_Qu",
+      "node_type": "author",
+      "label": "Meijun Qu",
+      "properties": {}
+    },
+    "author:Ye_Wang": {
+      "node_id": "author:Ye_Wang",
+      "node_type": "author",
+      "label": "Ye Wang",
+      "properties": {}
+    },
+    "kw:multi-head": {
+      "node_id": "kw:multi-head",
+      "node_type": "keyword",
+      "label": "Multi-Head",
+      "properties": {}
+    },
+    "kw:multi-path": {
+      "node_id": "kw:multi-path",
+      "node_type": "keyword",
+      "label": "Multi-path",
+      "properties": {}
+    }
+  },
+  "edges": [
+    {
+      "source": "paper:2002.08301v1",
+      "target": "author:Shuo-Fei_Wang",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2002.08301v1",
+      "target": "author:Wen-Kai_Yu",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2002.08301v1",
+      "target": "author:Ya-Xin_Li",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2002.08301v1",
+      "target": "kw:multi-wavelet",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2002.08301v1",
+      "target": "kw:residual",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2002.08301v1",
+      "target": "kw:convolutional",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2002.08301v1",
+      "target": "kw:neural",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2002.08301v1",
+      "target": "kw:network",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2006.13801v1",
+      "target": "author:Varun_Mannam",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2006.13801v1",
+      "target": "author:Yide_Zhang",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2006.13801v1",
+      "target": "author:Yinhao_Zhu",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2006.13801v1",
+      "target": "kw:instant",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2006.13801v1",
+      "target": "kw:denoising",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2006.13801v1",
+      "target": "kw:plugin",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2006.13801v1",
+      "target": "kw:imagej",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2006.13801v1",
+      "target": "kw:convolutional",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2102.09376v1",
+      "target": "author:Maoyuan_Xu",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2102.09376v1",
+      "target": "author:Xiaoping_Xie",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2102.09376v1",
+      "target": "kw:nfcnn:",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2102.09376v1",
+      "target": "kw:toward",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2102.09376v1",
+      "target": "kw:fusion",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2102.09376v1",
+      "target": "kw:convolutional",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2102.09376v1",
+      "target": "kw:neural",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2101.07713v1",
+      "target": "author:Rafael_G._Pires",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2101.07713v1",
+      "target": "author:Daniel_F._S._Santos",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2101.07713v1",
+      "target": "author:Marcos_C._S._Santana",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2101.07713v1",
+      "target": "kw:denoising",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2101.07713v1",
+      "target": "kw:attention-residual",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2101.07713v1",
+      "target": "kw:convolutional",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2101.07713v1",
+      "target": "kw:neural",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2101.07713v1",
+      "target": "kw:networks",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2107.04857v2",
+      "target": "author:Basit_O._Alawode",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2107.04857v2",
+      "target": "author:Mudassir_Masood",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2107.04857v2",
+      "target": "kw:dense-sparse",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2107.04857v2",
+      "target": "kw:convolutional",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2107.04857v2",
+      "target": "kw:neural",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2107.04857v2",
+      "target": "kw:networks",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2107.04857v2",
+      "target": "kw:training",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2009.00612v1",
+      "target": "author:Junaid_Malik",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2009.00612v1",
+      "target": "author:Serkan_Kiranyaz",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2009.00612v1",
+      "target": "author:Moncef_Gabbouj",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2009.00612v1",
+      "target": "kw:operational",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2009.00612v1",
+      "target": "kw:convolutional",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2009.00612v1",
+      "target": "kw:neural",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2009.00612v1",
+      "target": "kw:networks",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2009.00612v1",
+      "target": "kw:denoising",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2309.08197v1",
+      "target": "author:Orhan_Torun",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2309.08197v1",
+      "target": "author:Seniha_Esen_Yuksel",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2309.08197v1",
+      "target": "author:Erkut_Erdem",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2309.08197v1",
+      "target": "kw:hyperspectral",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2309.08197v1",
+      "target": "kw:denoising",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2309.08197v1",
+      "target": "kw:self-modulating",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2309.08197v1",
+      "target": "kw:convolutional",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2309.08197v1",
+      "target": "kw:neural",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1905.11172v1",
+      "target": "author:Dong-Wook_Kim",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1905.11172v1",
+      "target": "author:Jae_Ryun_Chung",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1905.11172v1",
+      "target": "author:Seung-Won_Jung",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1905.11172v1",
+      "target": "kw:grdn:grouped",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1905.11172v1",
+      "target": "kw:residual",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1905.11172v1",
+      "target": "kw:network",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1905.11172v1",
+      "target": "kw:denoising",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1905.11172v1",
+      "target": "kw:gan-based",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1704.00524v1",
+      "target": "author:Byeongyong_Ahn",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1704.00524v1",
+      "target": "author:Nam_Ik_Cho",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1704.00524v1",
+      "target": "kw:block-matching",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1704.00524v1",
+      "target": "kw:convolutional",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1704.00524v1",
+      "target": "kw:neural",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1704.00524v1",
+      "target": "kw:network",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:1704.00524v1",
+      "target": "kw:denoising",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2204.12736v2",
+      "target": "author:Jiahong_Zhang",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2204.12736v2",
+      "target": "author:Meijun_Qu",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2204.12736v2",
+      "target": "author:Ye_Wang",
+      "relation": "authored_by",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2204.12736v2",
+      "target": "kw:multi-head",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2204.12736v2",
+      "target": "kw:convolutional",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2204.12736v2",
+      "target": "kw:neural",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2204.12736v2",
+      "target": "kw:network",
+      "relation": "has_keyword",
+      "weight": 1.0
+    },
+    {
+      "source": "paper:2204.12736v2",
+      "target": "kw:multi-path",
+      "relation": "has_keyword",
+      "weight": 1.0
+    }
+  ]
+}
