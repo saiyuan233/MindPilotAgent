@@ -4,6 +4,7 @@
 混合检索（关键词 + 语义向量）+ 知识图谱构建 + 结构化摘要生成。
 已升级：引入 Cross-Encoder 深度交互模型进行高精度精排 (Rerank)。
 已升级：知识图谱持久化 + 语义节点扩展 + 图增强检索。
+已升级：智能上下文解析，从 query 和 task_description 提取高纯度检索关键词。
 """
 
 import os
@@ -18,7 +19,7 @@ from dataclasses import dataclass, field, asdict
 class KnowledgeNode:
     """知识图谱节点"""
     node_id: str
-    node_type: str          # paper | author | method | category | keyword (新增 keyword)
+    node_type: str          # paper | author | method | category | keyword
     label: str
     properties: dict = field(default_factory=dict)
 
@@ -33,13 +34,10 @@ class KnowledgeEdge:
 
 
 class LightKnowledgeGraph:
-    """
-    轻量持久化知识图谱（基于纯 Python，支持存盘与图增强检索）
-    """
+    """轻量持久化知识图谱（基于纯 Python，支持存盘与图增强检索）"""
 
     def __init__(self, storage_path: str = "memory/store/kg.json"):
         self.nodes: dict[str, KnowledgeNode] = {}
-        self.edges: list[KnowledgeEdge] = {}
         self.edges: list[KnowledgeEdge] = []
         self._adj: dict[str, list[str]] = {}   # 邻接表（用于多跳推理）
         self.storage_path = storage_path
@@ -60,7 +58,6 @@ class LightKnowledgeGraph:
         """从 Paper 对象构建图谱节点与关系，新增结构化摘要与关键词"""
         pid = f"paper:{paper.arxiv_id}"
         
-        # 1. 论文节点（在 properties 中存入结构化摘要）
         self.add_node(KnowledgeNode(
             node_id=pid, node_type="paper",
             label=paper.title[:100],
@@ -68,23 +65,20 @@ class LightKnowledgeGraph:
                 "year": paper.published[:4], 
                 "url": paper.url,
                 "relevance": paper.relevance_score,
-                "summary": paper.structured_summary  # 【新增】：将摘要完整入库
+                "summary": paper.structured_summary 
             }
         ))
         
-        # 2. 作者节点
         for author in paper.authors[:3]:
             aid = f"author:{author.replace(' ', '_')}"
             self.add_node(KnowledgeNode(node_id=aid, node_type="author", label=author))
             self.add_edge(KnowledgeEdge(pid, aid, "authored_by"))
             
-        # 3. 类别节点
         for cat in paper.categories[:2]:
             cid = f"cat:{cat}"
             self.add_node(KnowledgeNode(node_id=cid, node_type="category", label=cat))
             self.add_edge(KnowledgeEdge(pid, cid, "belongs_to"))
             
-        # 4. 关键词节点（【新增】：从类别和标题中简单提取关键词建点）
         keywords = paper.categories + [w for w in paper.title.split() if len(w) > 5]
         for kw in keywords[:5]:
             kid = f"kw:{kw.lower()}"
@@ -94,26 +88,26 @@ class LightKnowledgeGraph:
         return pid
 
     def search_relevant_papers(self, query: str) -> list[str]:
-        """【新增】：从本地图谱中基于关键词检索相关的历史论文ID"""
-        query_words = set(query.lower().split())
+        """从本地图谱中基于关键词检索相关的历史论文ID"""
+        # 如果传入的是带逗号的英文词组，按逗号切分；否则按空格切分
+        query_words = set(w.strip() for w in query.replace(',', ' ').lower().split() if w.strip())
         relevant_pids = []
         
         for nid, node in self.nodes.items():
             if node.node_type == "paper":
-                # 拼接标题和结构化摘要作为检索文本
                 node_text = node.label.lower()
                 summary = node.properties.get("summary")
                 if isinstance(summary, dict):
                     node_text += " " + " ".join(str(v).lower() for v in summary.values())
                 
-                # 如果查询词在这个节点的文本中出现，则视为匹配
+                # 如果有任一检索词命中，则召回
                 if any(word in node_text for word in query_words):
                     relevant_pids.append(nid)
                     
         return relevant_pids
 
     def save_to_disk(self):
-        """【新增】：将当前图谱状态持久化为 JSON 文件"""
+        """将当前图谱状态持久化为 JSON 文件"""
         os.makedirs(os.path.dirname(self.storage_path), exist_ok=True)
         data = {
             "nodes": {nid: asdict(node) for nid, node in self.nodes.items()},
@@ -123,7 +117,7 @@ class LightKnowledgeGraph:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
     def load_from_disk(self):
-        """【新增】：从 JSON 文件加载历史图谱"""
+        """从 JSON 文件加载历史图谱"""
         if not os.path.exists(self.storage_path):
             return
         try:
@@ -141,7 +135,6 @@ class LightKnowledgeGraph:
             pass
 
     def multi_hop_query(self, start_label: str, hops: int = 2) -> list[KnowledgeNode]:
-        """从起点出发进行 N 跳检索"""
         start_nodes = [
             nid for nid, n in self.nodes.items()
             if start_label.lower() in n.label.lower()
@@ -205,7 +198,6 @@ class StructuredSummarizer:
 class LiteratureAgent:
     """
     模块② — 文献检索与知识图谱 Agent
-    混合检索 + 图增强检索 + 图谱构建与持久化 + 结构化摘要 + Cross-Encoder 深度精排
     """
 
     AGENT_NAME = "LiteratureAgent"
@@ -218,7 +210,6 @@ class LiteratureAgent:
         self.logger = logger
         self.summarizer = StructuredSummarizer(llm_client, config.literature.summary_max_len, logger)
         
-        # 兼容 config 中可能配置的不同存储路径
         storage_dir = getattr(config, 'memory_dir', 'memory')
         kg_path = os.path.join(storage_dir, "store", "kg.json")
         self.kg = LightKnowledgeGraph(storage_path=kg_path)
@@ -241,50 +232,84 @@ class LiteratureAgent:
             self.logger.warning(self.AGENT_NAME, f"Cross-Encoder 模型加载失败，降级使用 TF-IDF: {e}")
             self.reranker = "fallback"
 
+    def _extract_search_keywords(self, query: str, task_description: str) -> str:
+        """从 query 和 task_description 的拼接文本中，提取并翻译出核心学术关键词。"""
+        system = (
+            "你是学术文献检索专家。请从用户的核心问题和任务描述中，"
+            "提取并翻译出可用于底层数据库检索的核心英文关键词组。\n"
+            "严格遵守以下规则：\n"
+            "1. 重点提取研究方向、模型名称、数据集名称等核心实体名词。\n"
+            "2. 剔除所有任务指令和无意义动词（如'输出包含SOTA模型对比'、'重点关注'、'总结局限性'等）。\n"
+            "3. 提取的核心概念必须全为英文，并严格使用【英文逗号】分隔。\n"
+            "4. 绝对不要输出任何前缀、解释文字或换行。\n"
+            "示例：输入'基于卷积神经网络的图像去噪，包含DND数据集' -> 输出'Convolutional Neural Network, Image Denoising, DND Dataset'"
+        )
+        prompt_text = f"【核心问题】：{query}\n【任务描述】：{task_description}"
+        
+        try:
+            resp = self.llm.chat([
+                {"role": "system", "content": system},
+                {"role": "user", "content": prompt_text}
+            ])
+            # 清理可能的干扰字符
+            clean_keywords = resp.strip(' "\'\n。，.,')
+            if clean_keywords:
+                return clean_keywords
+            return query or task_description
+        except Exception as e:
+            if self.logger:
+                self.logger.warning(self.AGENT_NAME, f"关键词提取失败，降级使用原始输入: {e}")
+            return query or task_description
+
     def run(self, task_description: str, query: str = "") -> dict:
-        # search_query = task_description or query
-        search_query = query or task_description
-        call = self.logger.start_call(self.AGENT_NAME, "literature_search", search_query)
+        # 保存原始的完整上下文（包含所有的用户要求），用于给下游写综述时做参考
+        original_context = f"{query}\n{task_description}".strip()
+        
+        call = self.logger.start_call(self.AGENT_NAME, "literature_search", query or task_description[:30])
 
         try:
-            # Step 1: 图增强检索 —— 优先探查本地知识图谱中的已有文献
+            # Step 1: 智能解析与关键词提取
+            self.logger.info(self.AGENT_NAME, "正在分析任务指令，萃取纯净的文献检索关键词...")
+            search_keywords = self._extract_search_keywords(query, task_description)
+            self.logger.info(self.AGENT_NAME, f"🎯 提取的检索核心词: {search_keywords}")
+
+            # Step 2: 图增强检索 —— 使用纯净关键词扫描本地图谱
             self.logger.info(self.AGENT_NAME, "正在进行图增强检索（扫描本地知识图谱）...")
-            local_pids = self.kg.search_relevant_papers(search_query)
+            local_pids = self.kg.search_relevant_papers(search_keywords)
             if local_pids:
                 self.logger.info(self.AGENT_NAME, f"💡 从本地记忆中关联到 {len(local_pids)} 篇历史文献。")
 
-            # Step 2: 外部 ArXiv 检索
+            # Step 3: 外部 ArXiv 检索 —— 传入英文词组
             self.logger.info(self.AGENT_NAME, "开始 ArXiv 混合检索获取最新前沿...")
             papers = self.arxiv.search(
-                search_query,
+                search_keywords,
                 max_results=self.config.literature.arxiv_max_results
             )
 
-            # Step 3: 深度语义重排序 (Cross-Encoder)
+            # Step 4: 深度语义重排序 (Cross-Encoder)
             if papers:
-                papers = self._rerank(papers, search_query)
+                papers = self._rerank(papers, search_keywords)
 
-            # Step 4: 生成结构化摘要 + 更新知识图谱
+            # Step 5: 生成结构化摘要 + 更新知识图谱
             self.logger.info(self.AGENT_NAME, f"为 {len(papers)} 篇论文生成摘要并构建图谱关系...")
             for paper in papers:
-                # 只有当还没生成摘要时才生成
                 if not paper.structured_summary:
                     paper.structured_summary = self.summarizer.summarize(paper)
-                # 无论是否已有，加入图谱（会自动建立 keyword, summary 等新属性）
                 self.kg.add_paper(paper)
 
-            # 【重要】 Step 5: 图谱持久化落盘
             self.kg.save_to_disk()
             self.logger.info(self.AGENT_NAME, "知识图谱状态已持久化。")
 
             # Step 6: 评估指标与综述生成
             recall_5 = self._compute_recall_at_k(papers, k=5)
             recall_10 = self._compute_recall_at_k(papers, k=10)
-            review = self._generate_review(search_query, papers[:5])
+            
+            # 【重要】生成综述时，传入 original_context，以确保生成的综述符合用户的任务指令（如包含SOTA对比）
+            review = self._generate_review(original_context, papers[:5])
 
             # Step 7: 存入短期记忆流
             self.memory.add(
-                content=f"文献检索: {search_query}，找到 {len(papers)} 篇",
+                content=f"文献检索: {query or task_description[:80]}，找到 {len(papers)} 篇",
                 agent=self.AGENT_NAME,
                 payload={"papers": [p.to_dict() for p in papers[:5]]},
                 tags=["literature"],
@@ -297,7 +322,7 @@ class LiteratureAgent:
                 "literature_review": review,
                 "metrics": {"recall@5": recall_5, "recall@10": recall_10},
                 "total_found": len(papers),
-                "local_kg_hits": len(local_pids)  # 新增返回字段
+                "local_kg_hits": len(local_pids)
             }
             self.logger.finish_call(call, result)
             self._print_results(papers[:5])
@@ -329,7 +354,9 @@ class LiteratureAgent:
             return self._fallback_rerank(papers, query)
 
     def _fallback_rerank(self, papers, query: str):
-        query_words = set(query.lower().split())
+        # 如果 query 已经是英文逗号分隔的词组，将其清理为空格分隔用于词频统计
+        clean_query = query.replace(',', ' ').lower()
+        query_words = set(clean_query.split())
         for p in papers:
             text = (p.title + " " + p.abstract).lower()
             words = text.split()
@@ -346,16 +373,19 @@ class LiteratureAgent:
         if total_relevant == 0: return 0.0
         return round(relevant / total_relevant, 3)
 
-    def _generate_review(self, query: str, papers: list) -> str:
+    def _generate_review(self, original_context: str, papers: list) -> str:
         if not papers: return "未找到相关文献。"
         paper_summaries = "\n".join([
             f"[{i+1}] {p.title}\n   方法：{p.structured_summary.get('method','') if p.structured_summary else ''}"
             for i, p in enumerate(papers)
         ])
-        system = "你是学术写作专家。请根据以下论文列表，写一段200字以内的中文文献综述。"
+        system = (
+            "你是学术写作专家。请根据以下论文列表，写一段200字左右的中文文献综述。\n"
+            "请务必关注用户的『原始任务指令』，在综述中尽量涵盖用户要求的重点（如涉及特定方法或数据集）。"
+        )
         resp = self.llm.chat([
             {"role": "system", "content": system},
-            {"role": "user", "content": f"研究主题：{query}\n\n相关论文：\n{paper_summaries}"}
+            {"role": "user", "content": f"原始任务指令与背景：{original_context}\n\n相关检索论文：\n{paper_summaries}"}
         ])
         return resp[:600]
 
